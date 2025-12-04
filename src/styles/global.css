@@ -137,11 +137,11 @@
 /* Scroll indicator bounce */
 @keyframes bounce-down {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     opacity: 0.6;
   }
   50% {
-    transform: translateY(10px);
+    transform: translateX(-50%) translateY(10px);
     opacity: 1;
   }
 }
@@ -149,6 +149,7 @@
 .scroll-indicator {
   animation: bounce-down 2s ease-in-out infinite;
 }
+
 
 /* Particle float animation */
 @keyframes particle-float {

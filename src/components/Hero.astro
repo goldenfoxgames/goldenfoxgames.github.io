@@ -3,12 +3,21 @@ import { ArrowRight, ChevronDown } from 'lucide-astro';
 ---
 
 <section id="hero" class="hero-height flex items-center justify-center relative overflow-hidden">
+  <!-- SVG dither filter - uses displacement to break up banding without visible noise -->
+  <svg width="0" height="0" aria-hidden="true" style="position:fixed">
+    <filter id="dither" color-interpolation-filters="sRGB" x="0" y="0" width="1" height="1">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="250" xChannelSelector="R" yChannelSelector="G"/>
+      <feBlend in2="SourceGraphic" mode="normal"/>
+    </filter>
+  </svg>
+
   <!-- Particle container -->
   <div class="particles absolute inset-0 pointer-events-none" aria-hidden="true"></div>
 
-  <!-- Subtle gradient background with extra stops to prevent banding -->
+  <!-- Subtle gradient background - uses explicit rgba to avoid transparent-black issue on iOS -->
   <!-- Starts with solid #0D0D0D to match iOS status bar theme-color -->
-  <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, #0D0D0D 0%, #0D0D0D 5%, rgba(22, 22, 22, 0.4) 15%, rgba(22, 22, 22, 0.25) 30%, transparent 50%, rgba(13, 13, 13, 0.2) 65%, rgba(13, 13, 13, 0.5) 80%, #0D0D0D 100%);"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, #0D0D0D 0%, #0D0D0D 5%, rgba(17, 17, 17, 0.3) 15%, rgba(15, 15, 15, 0.2) 30%, rgba(13, 13, 13, 0) 50%, rgba(13, 13, 13, 0.15) 65%, rgba(13, 13, 13, 0.4) 80%, #0D0D0D 100%); filter: url(#dither);"></div>
 
   <div class="relative z-10 text-center px-6">
     <!-- Logo -->
