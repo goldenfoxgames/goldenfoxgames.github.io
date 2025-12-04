@@ -1,11 +1,11 @@
 ---
-
+import { Mail, Twitter } from 'lucide-astro';
 ---
 
 <section id="contact" class="section">
   <div class="container-narrow">
     <!-- Section Header -->
-    <div class="text-center mb-12">
+    <div class="text-center mb-12 reveal">
       <span class="section-label">Get In Touch</span>
       <h2 class="section-title">Contact Us</h2>
       <p class="text-warm-400 max-w-xl mx-auto">
@@ -14,21 +14,14 @@
     </div>
 
     <!-- Contact Methods -->
-    <div class="grid gap-4 sm:grid-cols-2 max-w-xl mx-auto">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-8 reveal" style="transition-delay: 150ms;">
       <!-- Email -->
       <a
         href="mailto:contact@goldenfox.games"
-        class="flex items-center gap-3 p-4 card group"
+        class="inline-flex items-center gap-3 text-warm-300 hover:text-gold-500 transition-colors group"
       >
-        <div class="w-10 h-10 shrink-0 rounded-sm bg-fox-850 border border-fox-800 flex items-center justify-center text-gold-500 group-hover:border-gold-500/40 transition-all">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </div>
-        <div class="min-w-0">
-          <p class="text-xs text-warm-400">Email</p>
-          <p class="text-warm-50 font-medium text-sm truncate">contact@goldenfox.games</p>
-        </div>
+        <Mail class="w-5 h-5" />
+        <span>contact@goldenfox.games</span>
       </a>
 
       <!-- Twitter -->
@@ -36,17 +29,10 @@
         href="https://twitter.com/GoldenFoxLLC"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-3 p-4 card group"
+        class="inline-flex items-center gap-3 text-warm-300 hover:text-gold-500 transition-colors group"
       >
-        <div class="w-10 h-10 shrink-0 rounded-sm bg-fox-850 border border-fox-800 flex items-center justify-center text-gold-500 group-hover:border-gold-500/40 transition-all">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </div>
-        <div class="min-w-0">
-          <p class="text-xs text-warm-400">Twitter / X</p>
-          <p class="text-warm-50 font-medium text-sm">@GoldenFoxLLC</p>
-        </div>
+        <Twitter class="w-5 h-5" />
+        <span>@GoldenFoxLLC</span>
       </a>
     </div>
   </div>

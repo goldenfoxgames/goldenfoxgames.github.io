@@ -1,19 +1,32 @@
 ---
-
+import { ArrowRight, ChevronDown } from 'lucide-astro';
 ---
 
-<section id="hero" class="min-h-screen flex items-center justify-center relative">
+<section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+  <!-- Particle container -->
+  <div class="particles absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+
   <!-- Subtle gradient background -->
-  <div class="absolute inset-0 bg-gradient-to-b from-fox-900/50 via-transparent to-transparent pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-fox-900/50 via-transparent to-fox-950 pointer-events-none"></div>
 
   <div class="relative z-10 text-center px-6">
-    <!-- Logo - smaller and refined -->
+    <!-- Logo with hover effect -->
     <div class="mb-10">
-      <img
-        src="/img/logo.svg"
-        alt="Golden Fox"
-        class="w-24 h-24 mx-auto opacity-90"
-      />
+      <svg class="w-28 h-28 mx-auto logo-hover" viewBox="0 0 475 509" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Golden Fox logo">
+        <polygon class="logo-bg" fill="#161616" points="442 286 463.5 262.5 403 200.5 418 3 405 0 289.5 104 237.5 104 185.5 104 70 0 57 3 72 200.5 11.5 262.5 33 286 0 303 237.5 509 475 303"/>
+        <g class="logo-fg" transform="translate(34.5, 21)" fill="#FBB040">
+          <path d="M0,278.5 L25.5,300.5 L43,294.5 C76.5,283.5 109,293 140,313 L141.5,306 L74,241 L0,278.5 Z"/>
+          <path d="M104.5,204.5 C111,201 117.5,195 128.5,206.5 L155,232.5 L156,233.5 C159.5,231 170,221 170.5,215.5 C171,207.5 156,187 156,187 L50.5,186 L0.5,236 L15,250.5 L104.5,204.5 Z"/>
+          <polygon points="58 153.5 117 91.5 41.5 0 55 152"/>
+          <path d="M111.5,230.5 L106.5,224.5 L90,233.5 L139.5,280 L143.5,278 L149,249 L134.5,246 C120,243.5 117.5,237.5 111.5,230.5 Z"/>
+          <polygon points="180 352 188.5 362 203 362 217.5 362 226 352 203 347.5"/>
+          <path d="M294.5,230.5 L299.5,224.5 L316,233.5 L266.5,280 L262.5,278 L257,249 L271.5,246 C286,243.5 288.5,237.5 294.5,230.5 Z"/>
+          <path d="M406,278.5 L380.5,300 L363,294 C329.5,283 297,292.5 266,312.5 L264.5,305.5 L332,241 L406,278.5 Z"/>
+          <polygon points="348 154 288.5 91.5 364.5 0 350.5 152"/>
+          <path d="M299.5,205.5 C293,202 286.5,196 275.5,207.5 L249,233.5 L248,234.5 C244.5,232 234,222 233.5,216.5 C233,208.5 248,188 248,188 L354,187.5 L404,237.5 L389.5,252 L299.5,205.5 Z"/>
+          <path d="M243,173 L319.5,173 L334,163 L279.5,103.5 L203,191.5 L126.5,103.5 L71.5,163 L86,173 L162.5,173 C162.5,173 174.5,190.5 178,196.5 C183,205.5 188,222.5 172,238 L163,247 L153,320.5 L171,338 L202.5,338 L234,338 L252,320.5 L242,247 L233,238 C217,222 222,205.5 227,196.5 C231,190 243,173 243,173 Z M226,300 L217,327.5 L202.5,327.5 L188,327.5 L179,300 L202,283 L226,300 Z"/>
+        </g>
+      </svg>
     </div>
 
     <!-- Company Name -->
@@ -23,12 +36,52 @@
 
     <!-- Tagline -->
     <p class="text-lg md:text-xl text-warm-400 mb-12">
-      Indie Game Studio · Tbilisi, Georgia
+      Indie Game Studio
     </p>
 
     <!-- CTA -->
     <a href="#games" class="btn btn-primary">
       View Our Games
+      <ArrowRight class="btn-arrow w-4 h-4" />
     </a>
   </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
+    <ChevronDown class="w-5 h-5 text-warm-500" />
+  </div>
 </section>
+
+<script>
+  // Generate particles - subtle floating dots
+  const container = document.querySelector('.particles');
+  if (container) {
+    const particleCount = 15;
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${50 + Math.random() * 50}%`; // Lower half only
+      const size = Math.random() * 2 + 2;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.opacity = `${Math.random() * 0.3 + 0.4}`;
+      particle.style.animation = `particle-float ${Math.random() * 15 + 20}s linear infinite`;
+      particle.style.animationDelay = `${Math.random() * 15}s`;
+      container.appendChild(particle);
+    }
+  }
+
+  // Hide scroll indicator on scroll
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (scrollIndicator) {
+    let hidden = false;
+    window.addEventListener('scroll', () => {
+      if (!hidden && window.scrollY > 100) {
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.transition = 'opacity 0.5s';
+        hidden = true;
+      }
+    }, { passive: true });
+  }
+</script>

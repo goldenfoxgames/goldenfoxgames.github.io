@@ -6,15 +6,55 @@ import About from '../components/About.astro';
 import Games from '../components/Games.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+
+// Game structured data for SEO
+const gameSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Guns & Fury",
+  "operatingSystem": "iOS",
+  "applicationCategory": "GameApplication",
+  "genre": ["Action", "Western"],
+  "description": "Step into the Wild West as a gunslinger. Fast-paced 1v1 duels, bounty missions, and endless zombie waves.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Golden Fox LLC"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Golden Fox LLC"
+  },
+  "url": "https://apps.apple.com/us/app/guns-fury/id1589304660",
+  "image": "https://goldenfox.games/img/games/guns-fury.png"
+};
 ---
 
 <Layout title="Golden Fox - Indie Game Studio">
   <Nav />
   <main>
     <Hero />
+    <div class="section-divider"></div>
     <About />
+    <div class="section-divider"></div>
     <Games />
+    <div class="section-divider"></div>
     <Contact />
   </main>
   <Footer />
 </Layout>
+
+<!-- Game Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(gameSchema)} />
+
+<style>
+  .section-divider {
+    @apply max-w-xs mx-auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, theme('colors.warm.600 / 20%'), transparent);
+  }
+</style>

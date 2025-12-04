@@ -1,4 +1,6 @@
 ---
+import { Menu, X } from 'lucide-astro';
+
 const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#games', label: 'Games' },
@@ -19,10 +21,10 @@ const navLinks = [
         <li>
           <a
             href={href}
-            class="text-sm font-medium uppercase tracking-wider text-warm-400 hover:text-gold-500 transition-colors duration-300 relative group"
+            data-nav-link
+            class="nav-link text-sm font-medium uppercase tracking-wider text-warm-400 hover:text-gold-500 transition-colors duration-300"
           >
             {label}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
       ))}
@@ -34,9 +36,7 @@ const navLinks = [
       aria-label="Toggle menu"
       aria-expanded="false"
     >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
+      <Menu class="w-6 h-6" />
     </button>
   </nav>
 </header>
@@ -48,9 +48,7 @@ const navLinks = [
       class="menu-toggle absolute top-4 right-4 p-2 text-warm-300 hover:text-gold-500 transition-colors"
       aria-label="Close menu"
     >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
+      <X class="w-6 h-6" />
     </button>
 
     <nav class="mt-12">
