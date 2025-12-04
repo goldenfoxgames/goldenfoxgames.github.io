@@ -156,6 +156,9 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
           // Check if at top (hero section)
           if (scrollY < 100) {
             current = 'hero';
+          } else if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
+            // If scrolled to bottom, activate last section (Contact)
+            current = sections[sections.length - 1].getAttribute('id') || '';
           } else {
             sections.forEach(section => {
               const sectionTop = section.offsetTop - 150;
