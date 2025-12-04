@@ -22,7 +22,7 @@ const platformIcons: Record<string, string> = {
 <article class="group">
   <!-- Image with title overlay -->
   {image && (
-    <div class="relative aspect-[16/10] overflow-hidden rounded-lg">
+    <div class="relative aspect-[16/10] overflow-hidden">
       <img
         src={image}
         alt={title}
@@ -31,8 +31,10 @@ const platformIcons: Record<string, string> = {
         class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
         loading="lazy"
       />
-      <!-- Bottom gradient for text legibility -->
-      <div class="absolute inset-0 bg-gradient-to-t from-fox-950 via-transparent to-transparent"></div>
+      <!-- Top fade -->
+      <div class="absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-fox-950 to-transparent pointer-events-none"></div>
+      <!-- Bottom fade for blending + text legibility -->
+      <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-fox-950 to-transparent pointer-events-none"></div>
       <!-- Title on image -->
       <div class="absolute bottom-0 left-0 right-0 p-5">
         <h3 class="text-2xl font-heading font-bold text-warm-50 mb-1">
