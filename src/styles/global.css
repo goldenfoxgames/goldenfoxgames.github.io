@@ -165,9 +165,6 @@
 }
 
 /* Gradient dithering - noise texture on mobile, SVG filter on desktop */
-.dither-gradient {
-  position: relative;
-}
 
 /* Mobile: use noise texture overlay (zero CPU cost) */
 .dither-gradient::after {
