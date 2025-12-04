@@ -5,6 +5,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: theme('colors.fox.950');
   }
 
   body {
@@ -92,6 +93,12 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Dynamic viewport height for iOS */
+  .hero-height {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
 }
 
 /* ===================
@@ -169,6 +176,13 @@
   border-radius: 50%;
   pointer-events: none;
   will-change: transform, opacity;
+}
+
+/* HDR particle enhancement for supported displays */
+@media (dynamic-range: high) {
+  .particle {
+    background: color(display-p3 1 0.75 0.2 / 0.7);
+  }
 }
 
 /* Respect reduced motion preferences */

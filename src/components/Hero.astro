@@ -2,12 +2,13 @@
 import { ArrowRight, ChevronDown } from 'lucide-astro';
 ---
 
-<section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+<section id="hero" class="hero-height flex items-center justify-center relative overflow-hidden">
   <!-- Particle container -->
   <div class="particles absolute inset-0 pointer-events-none" aria-hidden="true"></div>
 
-  <!-- Subtle gradient background -->
-  <div class="absolute inset-0 bg-gradient-to-b from-fox-900/50 via-transparent to-fox-950 pointer-events-none"></div>
+  <!-- Subtle gradient background with extra stops to prevent banding -->
+  <!-- Starts with solid #0D0D0D to match iOS status bar theme-color -->
+  <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, #0D0D0D 0%, #0D0D0D 5%, rgba(22, 22, 22, 0.4) 15%, rgba(22, 22, 22, 0.25) 30%, transparent 50%, rgba(13, 13, 13, 0.2) 65%, rgba(13, 13, 13, 0.5) 80%, #0D0D0D 100%);"></div>
 
   <div class="relative z-10 text-center px-6">
     <!-- Logo -->
