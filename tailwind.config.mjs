@@ -7,6 +7,7 @@ export default {
         // Warm dark backgrounds (derived from logo #161616)
         fox: {
           950: '#0D0D0D',
+          925: '#121212', // Subtle blend between 950 and 900
           900: '#161616',
           850: '#1E1D1B',
           800: '#252422',
