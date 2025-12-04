@@ -17,7 +17,7 @@
   }
 
   ::selection {
-    @apply bg-gold-500/30 text-warm-50;
+    @apply bg-gold-500 text-fox-950;
   }
 }
 
@@ -36,10 +36,16 @@
 
   .section-label {
     @apply text-xs font-semibold uppercase tracking-widest text-gold-500 mb-2;
+    letter-spacing: 0.12em;
   }
 
   .section-title {
     @apply text-3xl md:text-4xl lg:text-5xl font-bold text-warm-50 mb-6;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-title {
+    letter-spacing: -0.03em;
   }
 
   /*
@@ -59,6 +65,10 @@
 
   .btn:hover {
     @apply text-gold-500;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
   }
 
   .btn:focus-visible {
@@ -84,7 +94,7 @@
   .btn-underline::after {
     content: '';
     @apply absolute left-0 bottom-0 w-0 h-px bg-gold-500;
-    transition: width 0.3s ease;
+    transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .btn-underline:hover::after {
@@ -100,6 +110,8 @@
 
   .card:hover {
     @apply border-gold-500/40;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(251, 176, 64, 0.08);
   }
 }
 
@@ -128,7 +140,7 @@
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Staggered children */
@@ -198,6 +210,7 @@
   border-radius: 50%;
   pointer-events: none;
   will-change: transform, opacity;
+  contain: strict;
   animation: particle-glow 3s ease-in-out infinite alternate;
 }
 
@@ -230,6 +243,19 @@
   .hero-title {
     color: color(display-p3 1 0.98 0.95);
   }
+
+  /* HDR buttons and accents */
+  .btn:hover {
+    color: color(display-p3 1 0.75 0.2);
+  }
+
+  .section-label {
+    color: color(display-p3 1 0.72 0.25);
+  }
+
+  .card:hover {
+    border-color: color(display-p3 1 0.72 0.25 / 0.6);
+  }
 }
 
 /* Respect reduced motion preferences */
@@ -253,5 +279,83 @@
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Print styles */
+@media print {
+  .particles,
+  .nav-fade,
+  .nav-fade-top,
+  .dither-gradient,
+  .mobile-bottom-nav,
+  .nav-header,
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a {
+    color: #0066cc;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .particle {
+    display: none;
+  }
+
+  .card {
+    border: 1px solid CanvasText;
+  }
+
+  button,
+  a {
+    border: 1px solid CanvasText;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .text-warm-400 {
+    color: #B0ABA2;
+  }
+
+  .btn:hover,
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .card {
+    border-width: 2px;
+  }
+}
+
+/* View Transitions API */
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(root) {
+  animation: fade-out 0.3s ease-out;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.3s ease-in;
 }
 
