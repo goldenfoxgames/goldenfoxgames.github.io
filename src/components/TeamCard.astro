@@ -11,9 +11,9 @@ const { name, role, image } = Astro.props;
 const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
 ---
 
-<article class="text-center group">
+<article class="text-center">
   <!-- Avatar -->
-  <div class="w-24 h-24 mx-auto mb-4 rounded-sm overflow-hidden border border-fox-800 group-hover:border-gold-500/40 transition-all duration-200 bg-fox-850">
+  <div class="w-24 h-24 mx-auto mb-4 rounded-sm overflow-hidden bg-fox-850">
     {image ? (
       <img
         src={image}

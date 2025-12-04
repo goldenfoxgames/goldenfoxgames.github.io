@@ -94,7 +94,7 @@
   .btn-underline::after {
     content: '';
     @apply absolute left-0 bottom-0 w-0 h-px bg-gold-500;
-    transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: width 0.3s ease-out;
   }
 
   .btn-underline:hover::after {
@@ -102,16 +102,7 @@
   }
 
   .card {
-    @apply bg-fox-900;
-    @apply rounded-sm;
-    @apply border border-fox-800;
-    @apply transition-all duration-200;
-  }
-
-  .card:hover {
-    @apply border-gold-500/40;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(251, 176, 64, 0.08);
+    /* Borderless, content-first design */
   }
 }
 
@@ -252,10 +243,6 @@
   .section-label {
     color: color(display-p3 1 0.72 0.25);
   }
-
-  .card:hover {
-    border-color: color(display-p3 1 0.72 0.25 / 0.6);
-  }
 }
 
 /* Respect reduced motion preferences */
@@ -313,10 +300,6 @@
     display: none;
   }
 
-  .card {
-    border: 1px solid CanvasText;
-  }
-
   button,
   a {
     border: 1px solid CanvasText;
@@ -331,10 +314,6 @@
   .btn:hover,
   a:hover {
     text-decoration: underline;
-  }
-
-  .card {
-    border-width: 2px;
   }
 }
 
