@@ -11,9 +11,10 @@ const { title, lastUpdated } = Astro.props;
 
 <div class="min-h-screen bg-fox-950">
   <!-- Header -->
-  <header class="py-6 px-6 border-b border-fox-800">
+  <header class="py-6 px-6 relative">
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-warm-600/15 to-transparent" aria-hidden="true"></div>
     <div class="max-w-3xl mx-auto">
-      <a href="/" class="text-warm-400 hover:text-gold-500 transition-colors text-sm flex items-center gap-2">
+      <a href="/" class="text-warm-400 hover:text-gold-500 transition-colors text-sm flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2">
         <ArrowLeft class="w-4 h-4" />
         Back to Home
       </a>
@@ -35,7 +36,8 @@ const { title, lastUpdated } = Astro.props;
   </main>
 
   <!-- Footer -->
-  <footer class="py-8 px-6 border-t border-fox-800">
+  <footer class="py-8 px-6 relative">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-warm-600/15 to-transparent" aria-hidden="true"></div>
     <div class="max-w-3xl mx-auto text-center text-sm text-warm-500">
       &copy; {new Date().getFullYear()} Golden Fox LLC. All rights reserved.
     </div>
@@ -48,7 +50,17 @@ const { title, lastUpdated } = Astro.props;
   }
 
   .legal-content h2 {
-    @apply text-xl font-heading font-bold text-warm-50 mt-10 mb-4 pb-2 border-b border-fox-800;
+    @apply text-xl font-heading font-bold text-warm-50 mt-10 mb-4 pb-2 relative;
+  }
+
+  .legal-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, rgba(139, 133, 128, 0.2), transparent 80%);
   }
 
   .legal-content h3 {

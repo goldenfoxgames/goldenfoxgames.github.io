@@ -4,14 +4,16 @@ import { ArrowLeft } from 'lucide-astro';
 ---
 
 <Layout title="404 - Page Not Found | Golden Fox" noindex={true}>
-  <main class="min-h-screen flex items-center justify-center px-6">
-    <div class="text-center">
+  <main class="min-h-screen flex items-center justify-center px-6 relative">
+    <!-- Subtle gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-fox-900/30 via-transparent to-fox-900/30 pointer-events-none" aria-hidden="true"></div>
+    <div class="text-center relative">
       <p class="text-gold-500 text-sm font-medium tracking-wider uppercase mb-4">404 Error</p>
       <h1 class="text-4xl md:text-5xl font-heading font-bold text-warm-50 mb-4">Page Not Found</h1>
       <p class="text-warm-400 mb-8 max-w-md mx-auto">
         The page you're looking for doesn't exist or has been moved.
       </p>
-      <a href="/" class="inline-flex items-center gap-2 text-warm-200 hover:text-gold-500 transition-colors">
+      <a href="/" class="inline-flex items-center gap-2 text-warm-200 hover:text-gold-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2">
         <ArrowLeft class="w-4 h-4" />
         Back to Home
       </a>
