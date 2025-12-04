@@ -78,8 +78,9 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Overpass:wght@600;700;800&display=swap" rel="stylesheet" />
+    <!-- Fonts - loaded async to avoid render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Overpass:wght@600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Overpass:wght@600;700;800&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -146,9 +147,24 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
       const navLinks = document.querySelectorAll('[data-nav-link]');
       const mobileNavLinks = document.querySelectorAll('[data-mobile-nav-link]');
       const sections = document.querySelectorAll('section[id]');
-      const heroSection = document.querySelector('#hero') || document.querySelector('section:first-of-type');
 
       if ((navLinks.length > 0 || mobileNavLinks.length > 0) && sections.length > 0) {
+        // Cache section positions to avoid forced reflow on scroll
+        let sectionData: { id: string; top: number }[] = [];
+        let pageHeight = 0;
+        let viewHeight = 0;
+
+        const cachePositions = () => {
+          sectionData = Array.from(sections).map(s => ({
+            id: s.getAttribute('id') || '',
+            top: s.offsetTop - 150
+          }));
+          pageHeight = document.body.offsetHeight;
+          viewHeight = window.innerHeight;
+        };
+        cachePositions();
+        window.addEventListener('resize', cachePositions, { passive: true });
+
         const setActiveLink = () => {
           let current = '';
           const scrollY = window.scrollY;
@@ -156,16 +172,15 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
           // Check if at top (hero section)
           if (scrollY < 100) {
             current = 'hero';
-          } else if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
+          } else if ((viewHeight + scrollY) >= pageHeight - 50) {
             // If scrolled to bottom, activate last section (Contact)
-            current = sections[sections.length - 1].getAttribute('id') || '';
+            current = sectionData[sectionData.length - 1]?.id || '';
           } else {
-            sections.forEach(section => {
-              const sectionTop = section.offsetTop - 150;
-              if (scrollY >= sectionTop) {
-                current = section.getAttribute('id') || '';
+            for (const section of sectionData) {
+              if (scrollY >= section.top) {
+                current = section.id;
               }
-            });
+            }
           }
 
           // Update desktop nav
