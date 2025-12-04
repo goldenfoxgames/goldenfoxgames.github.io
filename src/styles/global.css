@@ -164,24 +164,8 @@
   animation: bounce-down 2s ease-in-out infinite;
 }
 
-/* Gradient dithering - noise texture on mobile, SVG filter on desktop */
-
-/* Mobile: use noise texture overlay (zero CPU cost) */
-.dither-gradient::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/img/noise.png') repeat;
-  opacity: 0.03;
-  pointer-events: none;
-}
-
-/* Desktop: use SVG displacement filter */
+/* Gradient dithering - desktop only, mobile gets no dithering (less visible on small screens) */
 @media (min-width: 768px) {
-  .dither-gradient::after {
-    display: none;
-  }
-
   .dither-gradient {
     filter: url(#dither);
   }
