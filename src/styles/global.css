@@ -176,12 +176,31 @@
   border-radius: 50%;
   pointer-events: none;
   will-change: transform, opacity;
+  animation: particle-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes particle-glow {
+  0% {
+    background: rgba(251, 176, 64, 0.5);
+  }
+  100% {
+    background: rgba(255, 220, 150, 0.8);
+  }
 }
 
 /* HDR particle enhancement for supported displays */
 @media (dynamic-range: high) {
   .particle {
-    background: color(display-p3 1 0.75 0.2 / 0.7);
+    background: color(display-p3 1 0.75 0.2 / 0.6);
+  }
+
+  @keyframes particle-glow {
+    0% {
+      background: color(display-p3 1 0.7 0.2 / 0.5);
+    }
+    100% {
+      background: color(display-p3 1 0.88 0.6 / 0.85);
+    }
   }
 }
 
