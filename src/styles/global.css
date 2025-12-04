@@ -164,6 +164,17 @@
   animation: bounce-down 2s ease-in-out infinite;
 }
 
+/* Gradient dithering - light on mobile, full on desktop */
+.dither-gradient {
+  filter: url(#dither-light);
+}
+
+@media (min-width: 768px) {
+  .dither-gradient {
+    filter: url(#dither);
+  }
+}
+
 
 /* Particle float animation */
 @keyframes particle-float {
