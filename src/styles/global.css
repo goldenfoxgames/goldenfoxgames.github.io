@@ -210,7 +210,7 @@
   }
 }
 
-/* HDR particle enhancement for supported displays */
+/* HDR enhancement for supported displays */
 @media (dynamic-range: high) {
   .particle {
     background: color(display-p3 1 0.75 0.2 / 0.6);
@@ -223,6 +223,12 @@
     100% {
       background: color(display-p3 1 0.88 0.6 / 0.85);
     }
+  }
+
+  /* HDR titles - subtle warm glow on wide gamut displays */
+  .section-title,
+  .hero-title {
+    color: color(display-p3 1 0.98 0.95);
   }
 }
 
