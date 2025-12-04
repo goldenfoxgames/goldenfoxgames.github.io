@@ -22,7 +22,7 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -79,7 +79,6 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Fonts -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Overpass:wght@600;700;800&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Overpass:wght@600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Schema.org Structured Data -->
@@ -126,24 +125,6 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
         handleScroll();
       }
 
-      // Mobile menu toggle
-      const menuToggle = document.querySelector('.menu-toggle');
-      const mobileMenu = document.querySelector('.mobile-menu');
-      if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-          const isOpen = mobileMenu.classList.toggle('open');
-          menuToggle.setAttribute('aria-expanded', isOpen.toString());
-        });
-
-        // Close menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-          });
-        });
-      }
-
       // Smooth scroll for anchor links (backup for browsers without CSS smooth scroll)
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -175,19 +156,39 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
         revealElements.forEach(el => observer.observe(el));
       }
 
-      // Active nav indicator on scroll
+      // Active nav indicator on scroll (desktop + mobile bottom nav)
       const navLinks = document.querySelectorAll('[data-nav-link]');
+      const mobileNavLinks = document.querySelectorAll('[data-mobile-nav-link]');
       const sections = document.querySelectorAll('section[id]');
-      if (navLinks.length > 0 && sections.length > 0) {
+      const heroSection = document.querySelector('#hero') || document.querySelector('section:first-of-type');
+
+      if ((navLinks.length > 0 || mobileNavLinks.length > 0) && sections.length > 0) {
         const setActiveLink = () => {
           let current = '';
-          sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (window.scrollY >= sectionTop) {
-              current = section.getAttribute('id') || '';
+          const scrollY = window.scrollY;
+
+          // Check if at top (hero section)
+          if (scrollY < 100) {
+            current = 'hero';
+          } else {
+            sections.forEach(section => {
+              const sectionTop = section.offsetTop - 150;
+              if (scrollY >= sectionTop) {
+                current = section.getAttribute('id') || '';
+              }
+            });
+          }
+
+          // Update desktop nav
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.classList.add('active');
             }
           });
-          navLinks.forEach(link => {
+
+          // Update mobile bottom nav
+          mobileNavLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${current}`) {
               link.classList.add('active');
@@ -212,16 +213,14 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
     @apply bg-fox-900/95 backdrop-blur-sm shadow-lg;
   }
 
-  .mobile-menu {
-    @apply translate-x-full;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .mobile-menu.open {
-    @apply translate-x-0;
-  }
-
   .nav-link.active {
     @apply text-gold-500;
+  }
+
+  /* Add padding to body to account for bottom nav on mobile */
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: 3.5rem;
+    }
   }
 </style>

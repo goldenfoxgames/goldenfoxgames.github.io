@@ -35,25 +35,6 @@ export default {
         sans: ['Outfit', 'system-ui', '-apple-system', 'sans-serif'],
         heading: ['Overpass', 'system-ui', '-apple-system', 'sans-serif'],
       },
-      animation: {
-        'fade-in': 'fadeIn 0.6s ease-out forwards',
-        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
-        'scroll-hint': 'scrollHint 2s ease-in-out infinite',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        scrollHint: {
-          '0%, 100%': { opacity: '0.4', transform: 'translateY(0)' },
-          '50%': { opacity: '1', transform: 'translateY(8px)' },
-        },
-      },
     },
   },
   plugins: [],

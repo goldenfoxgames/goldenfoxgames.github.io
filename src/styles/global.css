@@ -60,6 +60,10 @@
     @apply text-gold-500;
   }
 
+  .btn:focus-visible {
+    @apply outline outline-2 outline-gold-500 outline-offset-2;
+  }
+
   .btn-primary {
     @apply text-warm-200;
   }
@@ -123,15 +127,6 @@
   transform: translateY(0);
 }
 
-/* Logo hover - brighten golden parts */
-.logo-hover .logo-fg {
-  transition: fill 0.3s ease;
-}
-
-.logo-hover:hover .logo-fg {
-  fill: #FCC860;
-}
-
 /* Scroll indicator bounce */
 @keyframes bounce-down {
   0%, 100% {
@@ -150,15 +145,15 @@
 
 /* Particle float animation */
 @keyframes particle-float {
-  0%, 100% {
+  0% {
     transform: translateY(0) translateX(0);
     opacity: 0;
   }
-  10% {
-    opacity: 1;
+  5% {
+    opacity: 0.6;
   }
-  90% {
-    opacity: 1;
+  95% {
+    opacity: 0.6;
   }
   100% {
     transform: translateY(-100vh) translateX(20px);
@@ -173,5 +168,29 @@
   background: rgba(251, 176, 64, 0.6);
   border-radius: 50%;
   pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .scroll-indicator {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  .particle {
+    display: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 

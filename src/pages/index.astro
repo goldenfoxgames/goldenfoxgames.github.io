@@ -35,14 +35,15 @@ const gameSchema = {
 ---
 
 <Layout title="Golden Fox - Indie Game Studio">
+  <a href="#main" class="skip-link">Skip to main content</a>
   <Nav />
-  <main>
+  <main id="main">
     <Hero />
-    <div class="section-divider"></div>
+    <div class="section-divider" aria-hidden="true"></div>
     <About />
-    <div class="section-divider"></div>
+    <div class="section-divider" aria-hidden="true"></div>
     <Games />
-    <div class="section-divider"></div>
+    <div class="section-divider" aria-hidden="true"></div>
     <Contact />
   </main>
   <Footer />
@@ -52,6 +53,22 @@ const gameSchema = {
 <script type="application/ld+json" set:html={JSON.stringify(gameSchema)} />
 
 <style>
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #FBB040;
+    color: #0D0D0D;
+    padding: 8px 16px;
+    z-index: 100;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
   .section-divider {
     @apply max-w-xs mx-auto;
     height: 1px;
