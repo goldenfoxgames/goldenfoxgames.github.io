@@ -1,0 +1,94 @@
+---
+interface Props {
+  title: string;
+  lastUpdated: string;
+}
+
+const { title, lastUpdated } = Astro.props;
+---
+
+<div class="min-h-screen bg-fox-950">
+  <!-- Header -->
+  <header class="py-6 px-6 border-b border-fox-800">
+    <div class="max-w-3xl mx-auto">
+      <a href="/" class="text-warm-400 hover:text-gold-500 transition-colors text-sm flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Home
+      </a>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="py-12 px-6">
+    <article class="max-w-3xl mx-auto">
+      <header class="mb-10">
+        <h1 class="text-3xl md:text-4xl font-heading font-bold text-warm-50 mb-3">{title}</h1>
+        <p class="text-warm-500 text-sm">Last updated: {lastUpdated}</p>
+      </header>
+
+      <div class="legal-content">
+        <slot />
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-fox-800">
+    <div class="max-w-3xl mx-auto text-center text-sm text-warm-500">
+      &copy; {new Date().getFullYear()} Golden Fox LLC. All rights reserved.
+    </div>
+  </footer>
+</div>
+
+<style is:global>
+  .legal-content {
+    @apply text-warm-300 leading-relaxed;
+  }
+
+  .legal-content h2 {
+    @apply text-xl font-heading font-bold text-warm-50 mt-10 mb-4 pb-2 border-b border-fox-800;
+  }
+
+  .legal-content h3 {
+    @apply text-lg font-heading font-semibold text-warm-100 mt-6 mb-3;
+  }
+
+  .legal-content p {
+    @apply mb-4;
+  }
+
+  .legal-content ul {
+    @apply mb-4 ml-6 list-disc;
+  }
+
+  .legal-content ul li {
+    @apply mb-2;
+  }
+
+  .legal-content strong {
+    @apply text-warm-100;
+  }
+
+  .legal-content a {
+    @apply text-gold-500 hover:text-gold-400 underline underline-offset-2;
+  }
+
+  .legal-content table {
+    @apply w-full mb-6 text-sm border-collapse;
+  }
+
+  .legal-content th,
+  .legal-content td {
+    @apply p-3 border border-fox-800 text-left;
+  }
+
+  .legal-content th {
+    @apply bg-fox-900 text-warm-100 font-medium;
+  }
+
+  .legal-content td {
+    @apply bg-fox-950;
+  }
+</style>

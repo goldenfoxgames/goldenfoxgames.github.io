@@ -1,0 +1,45 @@
+---
+import GameCard from './GameCard.astro';
+
+const games = [
+  {
+    title: "Guns & Fury",
+    description: "Step into the Wild West as a gunslinger competing for supremacy in Red Valley. Experience fast-paced 1v1 duels, challenging bounty missions with epic boss encounters, and endless zombie waves. Master the art of unholstering, shooting, and reloading in this action-packed Western showdown.",
+    image: "/img/games/guns-fury.png",
+    links: [
+      { platform: "App Store", url: "https://apps.apple.com/us/app/guns-fury/id1589304660" },
+    ]
+  },
+];
+---
+
+<section id="games" class="section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <span class="section-label">Our Work</span>
+      <h2 class="section-title">Games</h2>
+      <p class="text-warm-400 max-w-2xl mx-auto">
+        Discover the games we've crafted with passion and dedication.
+      </p>
+    </div>
+
+    <!-- Games -->
+    <div class="flex justify-center">
+      <div class="w-full max-w-md">
+        {games.map((game) => (
+          <GameCard {...game} />
+        ))}
+      </div>
+    </div>
+
+    <!-- Empty State (if no games) -->
+    {games.length === 0 && (
+      <div class="text-center py-16">
+        <p class="text-warm-400 text-lg">
+          Exciting games coming soon! Stay tuned.
+        </p>
+      </div>
+    )}
+  </div>
+</section>

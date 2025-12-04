@@ -1,0 +1,32 @@
+---
+import TeamCard from './TeamCard.astro';
+
+// Team members - update with actual team data
+const team = [
+  {
+    name: "Team Member",
+    role: "Founder & Developer",
+    image: undefined, // Add team photos to /img/team/
+  },
+];
+---
+
+<section id="team" class="section bg-fox-900">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <span class="section-label">The People</span>
+      <h2 class="section-title">Our Team</h2>
+      <p class="text-warm-400 max-w-2xl mx-auto">
+        The passionate individuals behind Golden Fox.
+      </p>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="flex flex-wrap justify-center gap-12">
+      {team.map((member) => (
+        <TeamCard {...member} />
+      ))}
+    </div>
+  </div>
+</section>

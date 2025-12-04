@@ -1,0 +1,39 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  image?: string;
+}
+
+const { name, role, image } = Astro.props;
+
+// Generate initials for placeholder
+const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+---
+
+<article class="text-center group">
+  <!-- Avatar -->
+  <div class="w-24 h-24 mx-auto mb-4 rounded-sm overflow-hidden border border-fox-800 group-hover:border-gold-500/40 transition-all duration-200 bg-fox-850">
+    {image ? (
+      <img
+        src={image}
+        alt={name}
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center text-warm-500 text-xl font-medium">
+        {initials}
+      </div>
+    )}
+  </div>
+
+  <!-- Info -->
+  <h3 class="text-lg font-heading font-semibold text-warm-50 mb-1">
+    {name}
+  </h3>
+  <p class="text-sm text-gold-500">
+    {role}
+  </p>
+</article>
+

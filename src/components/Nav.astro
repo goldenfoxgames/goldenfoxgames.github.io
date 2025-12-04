@@ -1,0 +1,80 @@
+---
+const navLinks = [
+  { href: '#about', label: 'About' },
+  { href: '#games', label: 'Games' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="nav-header fixed top-0 left-0 right-0 z-50">
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="font-heading font-bold text-xl text-warm-50 hover:text-gold-500 transition-colors">
+      Golden Fox
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex items-center gap-8">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class="text-sm font-medium uppercase tracking-wider text-warm-400 hover:text-gold-500 transition-colors duration-300 relative group"
+          >
+            {label}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      class="menu-toggle md:hidden p-2 text-warm-300 hover:text-gold-500 transition-colors"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu fixed inset-y-0 right-0 w-64 bg-fox-900 z-50 md:hidden shadow-2xl">
+  <div class="p-6">
+    <button
+      class="menu-toggle absolute top-4 right-4 p-2 text-warm-300 hover:text-gold-500 transition-colors"
+      aria-label="Close menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <nav class="mt-12">
+      <ul class="space-y-6">
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class="block text-lg font-medium text-warm-300 hover:text-gold-500 transition-colors"
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- Mobile Menu Backdrop -->
+<div class="mobile-backdrop fixed inset-0 bg-fox-950/80 z-40 hidden md:hidden"></div>
+
+<style>
+  .mobile-menu.open ~ .mobile-backdrop {
+    @apply block;
+  }
+</style>
