@@ -5,7 +5,30 @@
 <section id="about" class="section relative">
   <!-- Gradient background that blends from hero and into games -->
   <!-- Colors: fox-950 (#0D0D0D) and fox-925 (#121212) from theme -->
-  <div class="absolute inset-0 pointer-events-none dither-gradient" aria-hidden="true" style="background: linear-gradient(to bottom, #0D0D0D 0%, #0E0E0E 15%, #0F0F0F 25%, #101010 35%, #121212 50%, #101010 65%, #0F0F0F 75%, #0E0E0E 85%, #0D0D0D 100%);"></div>
+  <!-- Extra stops to minimize banding on mobile (no dithering) -->
+  <div class="absolute inset-0 pointer-events-none dither-gradient" aria-hidden="true" style="background: linear-gradient(to bottom,
+    #0D0D0D 0%,
+    #0D0D0D 5%,
+    #0E0E0E 10%,
+    #0E0E0E 15%,
+    #0F0F0F 20%,
+    #0F0F0F 25%,
+    #101010 30%,
+    #101010 35%,
+    #111111 40%,
+    #121212 45%,
+    #121212 50%,
+    #121212 55%,
+    #111111 60%,
+    #101010 65%,
+    #101010 70%,
+    #0F0F0F 75%,
+    #0F0F0F 80%,
+    #0E0E0E 85%,
+    #0E0E0E 90%,
+    #0D0D0D 95%,
+    #0D0D0D 100%
+  );"></div>
   <div class="container-narrow relative">
     <!-- Section Header -->
     <div class="text-center mb-12 reveal">

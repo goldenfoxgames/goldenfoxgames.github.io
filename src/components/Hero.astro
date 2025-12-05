@@ -17,7 +17,30 @@ import { ChevronDown } from 'lucide-astro';
 
   <!-- Subtle gradient background - uses explicit rgba to avoid transparent-black issue on iOS -->
   <!-- Starts with solid #0D0D0D to match iOS status bar theme-color -->
-  <div class="absolute inset-0 pointer-events-none dither-gradient" style="background: linear-gradient(to bottom, #0D0D0D 0%, #0D0D0D 5%, rgba(22, 22, 22, 0.4) 15%, rgba(22, 22, 22, 0.25) 30%, rgba(13, 13, 13, 0) 50%, rgba(13, 13, 13, 0.2) 65%, rgba(13, 13, 13, 0.5) 80%, #0D0D0D 100%);"></div>
+  <!-- Gradient with extra stops to minimize banding on mobile (no dithering) -->
+  <div class="absolute inset-0 pointer-events-none dither-gradient" style="background: linear-gradient(to bottom,
+    #0D0D0D 0%,
+    #0D0D0D 5%,
+    rgba(22, 22, 22, 0.45) 10%,
+    rgba(22, 22, 22, 0.4) 15%,
+    rgba(22, 22, 22, 0.35) 20%,
+    rgba(22, 22, 22, 0.3) 25%,
+    rgba(22, 22, 22, 0.25) 30%,
+    rgba(18, 18, 18, 0.18) 35%,
+    rgba(15, 15, 15, 0.1) 40%,
+    rgba(13, 13, 13, 0.05) 45%,
+    rgba(13, 13, 13, 0) 50%,
+    rgba(13, 13, 13, 0.08) 55%,
+    rgba(13, 13, 13, 0.15) 60%,
+    rgba(13, 13, 13, 0.2) 65%,
+    rgba(13, 13, 13, 0.3) 70%,
+    rgba(13, 13, 13, 0.4) 75%,
+    rgba(13, 13, 13, 0.5) 80%,
+    rgba(13, 13, 13, 0.65) 85%,
+    rgba(13, 13, 13, 0.8) 90%,
+    rgba(13, 13, 13, 0.9) 95%,
+    #0D0D0D 100%
+  );"></div>
 
   <div class="relative z-10 text-center px-6">
     <!-- Logo -->
