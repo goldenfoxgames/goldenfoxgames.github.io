@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, ChevronDown } from 'lucide-astro';
+import { ChevronDown } from 'lucide-astro';
 ---
 
 <section id="hero" class="hero-height flex items-center justify-center relative overflow-hidden">
@@ -61,7 +61,7 @@ import { ArrowRight, ChevronDown } from 'lucide-astro';
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.opacity = `${Math.random() * 0.3 + 0.4}`;
-      particle.style.animation = `particle-float ${Math.random() * 15 + 20}s linear infinite`;
+      particle.style.animation = `particle-float ${Math.random() * 15 + 20}s linear infinite, particle-glow 3s ease-in-out infinite alternate`;
       particle.style.animationDelay = `${Math.random() * 15}s`;
       container.appendChild(particle);
     }

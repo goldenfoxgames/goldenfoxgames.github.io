@@ -177,9 +177,12 @@ const ogImage = image ? `${siteUrl}${image}` : `${siteUrl}/img/logo.png`;
             // If scrolled to bottom, activate last section (Contact)
             current = sectionData[sectionData.length - 1]?.id || '';
           } else {
-            for (const section of sectionData) {
-              if (scrollY >= section.top) {
+            for (let i = 0; i < sectionData.length; i++) {
+              const section = sectionData[i];
+              const nextSection = sectionData[i + 1];
+              if (scrollY >= section.top && (!nextSection || scrollY < nextSection.top)) {
                 current = section.id;
+                break;
               }
             }
           }

@@ -101,9 +101,6 @@
     @apply w-full;
   }
 
-  .card {
-    /* Borderless, content-first design */
-  }
 }
 
 @layer utilities {
@@ -202,7 +199,7 @@
   pointer-events: none;
   will-change: transform, opacity;
   contain: strict;
-  animation: particle-glow 3s ease-in-out infinite alternate;
+  /* Animation applied via JS: particle-float + particle-glow */
 }
 
 @keyframes particle-glow {
